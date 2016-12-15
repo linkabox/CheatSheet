@@ -300,86 +300,99 @@ until condition; do
 done
 
 
-# 3. Command-Line Processing Cycle.（命令行处理循环）
+# 3. Command-Line Processing Cycle.（命令行处理周期）
 
 
 # The default order for command lookup is functions, followed by built-ins, with scripts and executables last.
+# 默认的命令查找顺序是自定义方法，其次是内置函数，脚本和可执行文件
 # There are three built-ins that you can use to override this order: `command`, `builtin` and `enable`.
+# 这里有3个内置的可重写的顺序: `command`, `builtin` and `enable`.
 
 command  # removes alias and function lookup. Only built-ins and commands found in the search path are executed
+         # 移除别名与自定义方法的查找. 仅从内置方法与命令执行的搜索路径中找到
 builtin  # looks up only built-in commands, ignoring functions and commands found in PATH
+         # 仅查找内置指令，忽略自定义方法和定义在环境变量中的指令
 enable   # enables and disables shell built-ins
+         # 启用和禁用shell内置指令
+         # -n 关闭指定的内部指令
+         # -a 显示所有激活的内部命令
 
 eval     # takes arguments and run them through the command-line processing steps all over again
+         # 把字符串当作命令来执行
+
+# 4. Input/Output Redirectors.（输入/输出重定向）
 
 
-# 4. Input/Output Redirectors.
+cmd1|cmd2  # 管道; 将cmd1的标准输出作为cmd2的标准输入
+> file     # 将标准输出流指向文件
+< file     # 将文件作为标准输入流
+>> file    # 将标准输出流指向文件; 如果文件已存在，追加到 file 的结尾处
+>|file     # 强制将标准输出流指向文件，即使设置了noclobber选项
+           # noclobber选项，可防止重定向时不经意地重写了已存在的文件,可通过set和unset来设置
+n>|file    # 强制从文件描述符n输出到文件中，即使设置了noclobber选项
+<> file    # 使用文件作为标准输入流和标准输出流
+n<>file    # 使用文件作为文件描述符n的标准输入流和标准输出流
+<<label    # here-document,它的作用是以label作为定界符的内容作为输入参数，如：cat << EOF
+n>file     # 文件描述符n输出到file中
+n<file     # file作为文件描述符n的输入
+n>>file    # 文件描述符n输出到file中; 如果文件已存在，追加到 file 的结尾处
+n>&        # 拷贝标准输出流到文件描述符n中
+n<&        # 拷贝标准输入流到文件描述符n中
+n>&m       # 将输出文件 m 和 n 合并
+n<&m       # 将输入文件 m 和 n 合并
+&>file     # 将标准输出流和标准错误指向文件
+<&-        # 关闭标准输入流
+>&-        # 关闭标准输出流
+n>&-       # 关闭文件描述符n的输出
+n<&-       # 关闭文件描述符n的输入
 
 
-cmd1|cmd2  # pipe; takes standard output of cmd1 as standard input to cmd2
-> file     # directs standard output to file
-< file     # takes standard input from file
->> file    # directs standard output to file; append to file if it already exists
->|file     # forces standard output to file even if noclobber is set
-n>|file    # forces output to file from file descriptor n even if noclobber is set
-<> file    # uses file as both standard input and standard output
-n<>file    # uses file as both input and output for file descriptor n
-<<label    # here-document
-n>file     # directs file descriptor n to file
-n<file     # takes file descriptor n from file
-n>>file    # directs file description n to file; append to file if it already exists
-n>&        # duplicates standard output to file descriptor n
-n<&        # duplicates standard input from file descriptor n
-n>&m       # file descriptor n is made to be a copy of the output file descriptor
-n<&m       # file descriptor n is made to be a copy of the input file descriptor
-&>file     # directs standard output and standard error to file
-<&-        # closes the standard input
->&-        # closes the standard output
-n>&-       # closes the ouput from file descriptor n
-n<&-       # closes the input from file descripor n
-
-
-# 5. Process Handling.
+# 5. Process Handling.（进程控制）
 
 
 # To suspend a job, type CTRL+Z while it is running. You can also suspend a job with CTRL+Y.
 # This is slightly different from CTRL+Z in that the process is only stopped when it attempts to read input from terminal.
 # Of course, to interupt a job, type CTRL+C.
 
-myCommand &  # runs job in the background and prompts back the shell
+# 在shell中，可以通过 CTRL+Z 来暂停一个任务，或者使用CTRL+Y
+# 这有些轻微的不同的是 CTRL+Z 只是停止该进程从控制台中读取输入的内容
+# 如果要中断某个任务，可以使用CTRL+C
+
+
+myCommand &  # 在后台执行该指令，并提示该任务相关信息
 
 jobs         # lists all jobs (use with -l to see associated PID)
 
-fg           # brings a background job into the foreground
-fg %+        # brings most recently invoked background job
-fg %-        # brings second most recently invoked background job
-fg %N        # brings job number N
-fg %string   # brings job whose command begins with string
-fg %?string  # brings job whose command contains string
+fg           # 将一个后台任务转到前台
+fg %+        # 将最近调用的后台任务转到前台
+fg %-        # 将最近第二个调用的后台任务转到前台
+fg %N        # 根据序号N来指定后台任务转到前台
+fg %string   # 将指令开头为string的后台任务转到前台
+fg %?string  # 将指令包含string的后台任务转到前台
 
-kill -l      # returns a list of all signals on the system, by name and number
-kill PID     # terminates process with specified PID
+kill -l      # 返回所有消息列表；kill可将指定的信息送至程序，预设的信息为SIGTERM(15)
+kill PID     # 终止指定PID的进程
 
-ps           # prints a line of information about the current running login shell and any processes running under it
+ps           # 打印当前shell程序及其相关子进程信息
 ps -a        # selects all processes with a tty except session leaders
 
-trap cmd sig1 sig2  # executes a command when a signal is received by the script
-trap "" sig1 sig2   # ignores that signals
-trap - sig1 sig2    # resets the action taken when the signal is received to the default
+trap cmd sig1 sig2  # 设置执行脚本时接收到某个信号时触发给定指令
+trap "" sig1 sig2   # 忽略某些信号，如：trap "" INT 表明忽略SIGINT信号，即按Ctrl+C也不能使脚本退出
+trap - sig1 sig2    # 重置接收到某些信号后的处理操作
 
-disown <PID|JID>    # removes the process from the list of jobs
+disown <PID|JID>    # 从任务列表中移除指定任务
 
-wait                # waits until all background jobs have finished
+wait                # 等待直到所有后台任务处理完毕
 
 
 # 6. Tips and Tricks.
 
 
-# set an alias
+# set an alias （设置别名）
 cd; nano .bash_profile
 > alias gentlenode='ssh admin@gentlenode.com -p 3404'  # add your alias in .bash_profile
 
-# to quickly go to a specific directory
+# to quickly go to a specific directory（快速跳转到指定目录，这个没什么用因为有神器autojump）
 cd; nano .bashrc
 > shopt -s cdable_vars
 > export websites="/Users/mac/Documents/websites"
@@ -388,7 +401,7 @@ source .bashrc
 cd websites
 
 
-# 7. Debugging Shell Programs.
+# 7. Debugging Shell Programs.（调试Shell程序）
 
 
 bash -n scriptname  # don't run commands; check for syntax errors only
