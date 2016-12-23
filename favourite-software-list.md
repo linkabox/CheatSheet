@@ -15,6 +15,7 @@
 	- readline
 	-  mono：Mono运行时，Mac下执行C#编译的exe
 	- [oh my zsh](http://ohmyz.sh/)：轻松配置zsh环境，以及各种附加插件
+	
 ####OSX应用程序
 - [Alfred 3](https://www.alfredapp.com/)：搜索利器
 - [Skim](http://skim-app.sourceforge.net/)：pdf阅读器
