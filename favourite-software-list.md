@@ -1,6 +1,6 @@
-#Favourite Software List
-##Mac
-####Shell程序
+
+## Shell程序
+
 以下程序都可通过[brew install](http://brew.sh/)安装
 - apktool：Android反编译工具
 - [autojump](https://github.com/wting/autojump)：快速定位工作目录
@@ -16,7 +16,7 @@
 	-  mono：Mono运行时，Mac下执行C#编译的exe
 	- [oh my zsh](http://ohmyz.sh/)：轻松配置zsh环境，以及各种附加插件
 	
-####OSX应用程序
+## OSX
 - [Alfred 3](https://www.alfredapp.com/)：搜索利器
 - [Skim](http://skim-app.sourceforge.net/)：pdf阅读器
 - [BetterZip](https://macitbetter.com/)：类似于WinRAR的压缩工具
@@ -31,7 +31,7 @@
 - [iTerm](https://www.iterm2.com/)：替代系统内置终端Terminal，配合zsh起来使用更佳
 - [Xee3](https://xee.c3.cx/)：看图软件，Mac版的XnView实在太丑了
 
-##Win
+## Win
 - [XnView](http://www.xnview.com/en/)：看图神器
 - [RegexBuddy](https://www.regexbuddy.com/)：正则式测试神器
 - [RapidEE](https://www.rapidee.com/en/download)：环境变量编辑工具
@@ -43,7 +43,7 @@
 - [7-Zip](http://www.7-zip.org/)：免费且功能全面的压缩工具
 - [QuickBMS](http://aluigi.altervista.org/quickbms.htm)：强大游戏资源破解工具
 
-##Multi-platform
+## Multi-platform
 - [SublimeText](https://www.sublimetext.com/)：强大文本编辑器，还可以当小型IDE来用
 - [Beyond Compare](http://www.scootersoftware.com/download.php)：文件差异对比工具
 - [TexturePacker](https://www.codeandweb.com/texturepacker)：图集生成工具
@@ -51,3 +51,5 @@
 - [百度网盘](http://pan.baidu.com/download#pan)：国内网盘最靠谱的一个
 - [Silo 2](http://nevercenter.com/silo/)：轻量的建模工具，大部分操作类似于Maya
 - [Pomotodo](https://pomotodo.com/)：番茄土豆，集合ToDoList与番茄工作法的工具
+- [Java-decompiler](https://github.com/java-decompiler/jd-gui)：jar反编译工具
+
