@@ -2,8 +2,10 @@
 ## Shell程序
 
 以下程序都可通过[brew install](http://brew.sh/)安装
-- apktool：Android反编译工具
+- apktool：apk解包工具
 - [autojump](https://github.com/wting/autojump)：快速定位工作目录
+- [mono](http://www.mono-project.com/)：Mono运行时，Mac下执行C#编译的exe
+- [oh my zsh](http://ohmyz.sh/)：轻松配置zsh环境，以及各种附加插件
 - GNU系列工具
 	- automake
 	- gettext
@@ -13,9 +15,7 @@
 	- wget
 	- libtool
 	- readline
-	-  mono：Mono运行时，Mac下执行C#编译的exe
-	- [oh my zsh](http://ohmyz.sh/)：轻松配置zsh环境，以及各种附加插件
-	
+
 ## OSX
 - [Alfred 3](https://www.alfredapp.com/)：搜索利器
 - [Skim](http://skim-app.sourceforge.net/)：pdf阅读器
