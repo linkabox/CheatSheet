@@ -3,6 +3,7 @@
 
 以下程序都可通过[brew install](http://brew.sh/)安装
 - apktool：apk解包工具
+- [bat](https://github.com/sharkdp/bat):带有行号和代码高亮cat指令
 - [autojump](https://github.com/wting/autojump)：快速定位工作目录
 - [mono](http://www.mono-project.com/)：Mono运行时，Mac下执行C#编译的exe
 - [oh my zsh](http://ohmyz.sh/)：轻松配置zsh环境，以及各种附加插件
